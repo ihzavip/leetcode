@@ -8,17 +8,14 @@
 // add(1)(2)(3)(4)(5); // == 15
 
 function add(n) {
-  return (args) => {
-    console.log(args);
-    console.log(n);
-    return n + args;
+  const sum = function (y) {
+    return add(n + y);
   };
+  sum.valueOf = function () {
+    return n;
+  };
+  return sum;
 }
 
-function add2(n) {
-  const func = (x) => add(n + x);
-  func.valueOf = () => n;
-  return func;
-}
-
-console.log(add2(1)(2));
+// console.log(add(1)(2)(3)(4));
+console.log(add(3));
